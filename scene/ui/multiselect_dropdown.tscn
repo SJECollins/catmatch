@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://dppxgk2sjffk4"]
+
+[ext_resource type="Script" uid="uid://c34oae6qxgcar" path="res://scripts/ui/multiselect_dropdown.gd" id="1_gbjda"]
+[ext_resource type="Theme" uid="uid://bbw3oybkg7aut" path="res://assets/theme/form_theme.tres" id="1_wkfnt"]
+[ext_resource type="StyleBox" uid="uid://c2xo3872epguf" path="res://assets/theme/btn_dropdown.tres" id="3_aoi1x"]
+
+[sub_resource type="Theme" id="Theme_0rkev"]
+Button/styles/disabled = ExtResource("3_aoi1x")
+Button/styles/focus = ExtResource("3_aoi1x")
+Button/styles/hover = ExtResource("3_aoi1x")
+Button/styles/normal = ExtResource("3_aoi1x")
+Button/styles/pressed = ExtResource("3_aoi1x")
+
+[node name="MultiselectDropdown" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("1_wkfnt")
+script = ExtResource("1_gbjda")
+
+[node name="BtnDropdown" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_0rkev")
+text = "
+"
+text_overrun_behavior = 3
+
+[node name="PopupDropdown" type="PopupPanel" parent="."]
+
+[node name="OptionList" type="VBoxContainer" parent="PopupDropdown"]
+offset_right = 100.0
+offset_bottom = 98.0
+size_flags_horizontal = 3
+size_flags_vertical = 3

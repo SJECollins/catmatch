@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="cat" load_steps=2 format=3 uid="uid://bnj2r1n0rmbde"]
+
+[ext_resource type="Script" uid="uid://ci65ebxwgoab4" path="res://resources/cat.gd" id="1_l6n1i"]
+
+[resource]
+script = ExtResource("1_l6n1i")
+name = ""
+age = ""
+colour = ""
+breed = ""
+traits = Array[String]([])
+adopted = false
+metadata/_custom_type_script = "uid://ci65ebxwgoab4"

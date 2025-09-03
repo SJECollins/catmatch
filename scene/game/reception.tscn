@@ -1,0 +1,158 @@
+[gd_scene load_steps=12 format=3 uid="uid://c2cbseeulvxd4"]
+
+[ext_resource type="Texture2D" uid="uid://xai2x4bqiofg" path="res://assets/grounds/solidbackground.png" id="1_8jtp5"]
+[ext_resource type="Script" uid="uid://23w5ypupdxv" path="res://scripts/game/reception.gd" id="1_rmn5g"]
+[ext_resource type="PackedScene" uid="uid://b107f50b7336n" path="res://scene/sprites/adopter_sprite.tscn" id="2_1f4e8"]
+[ext_resource type="Texture2D" uid="uid://ba7w6f7og8axq" path="res://assets/grounds/background.png" id="2_rmn5g"]
+[ext_resource type="Script" uid="uid://72dyuf722txq" path="res://scripts/ui/dialog_box.gd" id="5_8c1gr"]
+[ext_resource type="PackedScene" uid="uid://col7774im21hg" path="res://scene/ui/computer.tscn" id="5_q1asa"]
+[ext_resource type="Theme" uid="uid://bbw3oybkg7aut" path="res://assets/theme/form_theme.tres" id="6_ewxys"]
+[ext_resource type="Texture2D" uid="uid://cuyfnhjk0uhjq" path="res://assets/button.png" id="6_q1asa"]
+[ext_resource type="Script" uid="uid://dm5h8ibn3ovdc" path="res://scripts/ui/stat_display.gd" id="8_kfdo8"]
+[ext_resource type="Texture2D" uid="uid://bpeg11atmifk3" path="res://assets/ticketdisplay.png" id="8_ypcqg"]
+[ext_resource type="Texture2D" uid="uid://noxcee36jo0n" path="res://assets/pixelhead.png" id="9_kfdo8"]
+
+[node name="Reception" type="Node2D"]
+script = ExtResource("1_rmn5g")
+adopter_scene = ExtResource("2_1f4e8")
+
+[node name="Background" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("1_8jtp5")
+expand_mode = 3
+
+[node name="PeopleContainer" type="Node2D" parent="."]
+position = Vector2(1250, 256)
+
+[node name="Foreground" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+texture = ExtResource("2_rmn5g")
+
+[node name="Computer" parent="Foreground" instance=ExtResource("5_q1asa")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 150.0
+offset_top = 70.0
+offset_right = 150.0
+offset_bottom = 70.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="LblScore" type="Label" parent="Foreground"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+
+[node name="DialogBox" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+theme = ExtResource("6_ewxys")
+script = ExtResource("5_8c1gr")
+
+[node name="TextureRect" type="TextureRect" parent="DialogBox"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -240.0
+offset_top = -128.0
+offset_right = 240.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("6_q1asa")
+
+[node name="TextOutput" type="Label" parent="DialogBox"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = -112.0
+offset_right = 160.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+
+[node name="StatDisplay" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 320.0
+offset_top = 32.0
+offset_right = 360.0
+offset_bottom = 72.0
+script = ExtResource("8_kfdo8")
+
+[node name="StatBg" type="TextureRect" parent="StatDisplay"]
+layout_mode = 0
+offset_right = 176.0
+offset_bottom = 46.0
+scale = Vector2(2, 2)
+texture = ExtResource("8_ypcqg")
+
+[node name="RowStatDisplay" type="HBoxContainer" parent="StatDisplay"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 16.0
+offset_right = 344.0
+offset_bottom = 64.0
+theme_override_constants/separation = 4
+
+[node name="DayText" type="RichTextLabel" parent="StatDisplay/RowStatDisplay"]
+custom_minimum_size = Vector2(112, 0)
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 32
+text = "Day 01"
+
+[node name="PixelHead" type="TextureRect" parent="StatDisplay/RowStatDisplay"]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+texture = ExtResource("9_kfdo8")
+
+[node name="StatText" type="RichTextLabel" parent="StatDisplay/RowStatDisplay"]
+custom_minimum_size = Vector2(164, 0)
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 32
+text = "00 (00/00)"

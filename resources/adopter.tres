@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="adopter" load_steps=2 format=3 uid="uid://b0c7fn88vrcil"]
+
+[ext_resource type="Script" uid="uid://djwrkmq2fgogl" path="res://resources/adopter.gd" id="1_hpn1o"]
+
+[resource]
+script = ExtResource("1_hpn1o")
+adopter = 0
+request = ""
+wants = []
+complete = false
+metadata/_custom_type_script = "uid://djwrkmq2fgogl"

@@ -1,0 +1,144 @@
+[gd_scene load_steps=10 format=3 uid="uid://v2sxn01mmtha"]
+
+[ext_resource type="Script" uid="uid://ctixk6iv6y14l" path="res://scripts/game/game_manager.gd" id="1_pw1yp"]
+[ext_resource type="Script" uid="uid://bqe0m6vf3vagd" path="res://scripts/game/scene_container.gd" id="2_l2vx3"]
+[ext_resource type="Texture2D" uid="uid://hry4qo3w0qda" path="res://assets/helpbg.png" id="4_82mss"]
+[ext_resource type="Theme" uid="uid://bbw3oybkg7aut" path="res://assets/theme/form_theme.tres" id="5_0tn4t"]
+[ext_resource type="Script" uid="uid://dybt42esbus8j" path="res://scripts/ui/btn_info.gd" id="5_tr56l"]
+[ext_resource type="Script" uid="uid://bu3mrmqph210m" path="res://scripts/ui/info_panel.gd" id="6_0tn4t"]
+[ext_resource type="Texture2D" uid="uid://b1n8akaf60iux" path="res://assets/example-friendly.png" id="7_7d2hf"]
+[ext_resource type="Texture2D" uid="uid://w2qibs06ssvj" path="res://assets/example-greedy.png" id="8_c7fbu"]
+[ext_resource type="Texture2D" uid="uid://cnp0pfquuoedx" path="res://assets/example-shy.png" id="9_8u7u6"]
+
+[node name="Game" type="Node2D"]
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("1_pw1yp")
+
+[node name="TimeManager" type="Node" parent="."]
+
+[node name="SceneContainer" type="Node2D" parent="."]
+script = ExtResource("2_l2vx3")
+
+[node name="BtnSwitchScene" type="Button" parent="."]
+custom_minimum_size = Vector2(128, 64)
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Go To Wherever"
+autowrap_mode = 2
+icon_alignment = 1
+expand_icon = true
+
+[node name="BtnInfo" type="Button" parent="."]
+offset_right = 52.0
+offset_bottom = 53.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "?"
+icon = ExtResource("4_82mss")
+icon_alignment = 1
+script = ExtResource("5_tr56l")
+
+[node name="InfoPanel" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 320.0
+offset_bottom = 480.0
+theme = ExtResource("5_0tn4t")
+script = ExtResource("6_0tn4t")
+
+[node name="Panel" type="Panel" parent="InfoPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BtnClose" type="Button" parent="InfoPanel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -52.0
+offset_bottom = 53.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "X"
+icon = ExtResource("4_82mss")
+icon_alignment = 1
+
+[node name="Column" type="VBoxContainer" parent="InfoPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = 40.0
+offset_right = -30.0
+offset_bottom = -80.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="LblInfo" type="Label" parent="InfoPanel/Column"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 48
+text = "Cat Match Tips:"
+
+[node name="RowCat" type="HBoxContainer" parent="InfoPanel/Column"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="InfoPanel/Column/RowCat"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("7_7d2hf")
+stretch_mode = 2
+
+[node name="LblCatInfoHints" type="Label" parent="InfoPanel/Column/RowCat"]
+layout_mode = 2
+text = "Some cats are friendly"
+
+[node name="RowCat2" type="HBoxContainer" parent="InfoPanel/Column"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="InfoPanel/Column/RowCat2"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("8_c7fbu")
+stretch_mode = 2
+
+[node name="LblCatInfoHints" type="Label" parent="InfoPanel/Column/RowCat2"]
+layout_mode = 2
+text = "Some cats are greedy"
+
+[node name="RowCat3" type="HBoxContainer" parent="InfoPanel/Column"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="InfoPanel/Column/RowCat3"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("9_8u7u6")
+stretch_mode = 2
+
+[node name="LblCatInfoHints" type="Label" parent="InfoPanel/Column/RowCat3"]
+layout_mode = 2
+text = "Some cats are shy"
+
+[node name="LblInfoHints" type="Label" parent="InfoPanel/Column"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+text = "Investigate the cats and learn their details."
+autowrap_mode = 2
+
+[node name="LblAdopterHint" type="Label" parent="InfoPanel/Column"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+text = "Try to find a good adopter to match your cats."
+autowrap_mode = 2
+
+[connection signal="pressed" from="BtnInfo" to="BtnInfo" method="_on_pressed"]
+[connection signal="pressed" from="InfoPanel/BtnClose" to="BtnInfo" method="_on_btn_close_pressed"]

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cma3d3chadgju"]
+
+[ext_resource type="Script" uid="uid://hreidgnhglsr" path="res://scripts/sprites/cat.gd" id="1_6xb85"]
+
+[node name="Cat" type="Sprite2D"]
+script = ExtResource("1_6xb85")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

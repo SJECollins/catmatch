@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://b107f50b7336n"]
+
+[ext_resource type="Texture2D" uid="uid://bwtg8lqdogen3" path="res://assets/adopter_textures/adopter-one.png" id="1_3bn8d"]
+[ext_resource type="Script" uid="uid://bxtic617gj1kd" path="res://scripts/sprites/adopter.gd" id="1_3m4es"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oe14q"]
+size = Vector2(180, 240)
+
+[node name="Adopter" type="Area2D"]
+script = ExtResource("1_3m4es")
+
+[node name="AdopterSprite" type="Sprite2D" parent="."]
+scale = Vector2(3, 3)
+texture = ExtResource("1_3bn8d")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AdopterSprite"]
+
+[node name="AdopterArea" type="CollisionShape2D" parent="."]
+position = Vector2(0, 76)
+shape = SubResource("RectangleShape2D_oe14q")

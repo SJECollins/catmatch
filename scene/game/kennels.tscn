@@ -1,0 +1,196 @@
+[gd_scene load_steps=14 format=3 uid="uid://b1ga2qukmfdjq"]
+
+[ext_resource type="Script" uid="uid://d3lvf0xait4s0" path="res://scripts/game/kennels.gd" id="1_bxjjm"]
+[ext_resource type="Texture2D" uid="uid://xai2x4bqiofg" path="res://assets/grounds/solidbackground.png" id="1_rracs"]
+[ext_resource type="PackedScene" uid="uid://d4g5wcj8btlv2" path="res://scene/sprites/cat_kennel.tscn" id="2_al3vs"]
+[ext_resource type="Texture2D" uid="uid://bt73ferfk7qf2" path="res://assets/grounds/kennels.png" id="2_vmlpf"]
+[ext_resource type="Texture2D" uid="uid://0rf6ntvdpm32" path="res://assets/grounds/kennelhl.png" id="3_1c8vv"]
+[ext_resource type="Script" uid="uid://s88ikurkl3tb" path="res://scripts/game/clipboard.gd" id="3_cye7l"]
+[ext_resource type="Texture2D" uid="uid://d3q3nfilbya8n" path="res://assets/clipboard.png" id="3_vmlpf"]
+[ext_resource type="Texture2D" uid="uid://dfodu0v746lqs" path="res://assets/grounds/kennel.png" id="4_a8sod"]
+[ext_resource type="Script" uid="uid://dsjaro61kn72l" path="res://scripts/sprites/clipboard_area.gd" id="4_ltvtw"]
+[ext_resource type="Theme" uid="uid://bbw3oybkg7aut" path="res://assets/theme/form_theme.tres" id="7_d08i5"]
+[ext_resource type="PackedScene" uid="uid://dppxgk2sjffk4" path="res://scene/ui/multiselect_dropdown.tscn" id="10_a8sod"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cye7l"]
+size = Vector2(220, 320)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a8sod"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="Kennels" type="Node2D"]
+script = ExtResource("1_bxjjm")
+kennel_scene = ExtResource("2_al3vs")
+highlight_texture = ExtResource("3_1c8vv")
+normal_texture = ExtResource("4_a8sod")
+
+[node name="Background" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(2, 2)
+texture = ExtResource("1_rracs")
+
+[node name="Foreground" type="TextureRect" parent="."]
+offset_right = 640.0
+offset_bottom = 360.0
+scale = Vector2(2, 2)
+texture = ExtResource("2_vmlpf")
+
+[node name="CatContainer" type="Node2D" parent="."]
+
+[node name="Clipboard" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 180.0
+offset_top = 760.0
+offset_right = 180.0
+offset_bottom = 760.0
+mouse_force_pass_scroll_events = false
+theme = ExtResource("7_d08i5")
+script = ExtResource("3_cye7l")
+
+[node name="ClipboardArea" type="Area2D" parent="Clipboard"]
+script = ExtResource("4_ltvtw")
+
+[node name="ClipboardShape" type="CollisionShape2D" parent="Clipboard/ClipboardArea"]
+position = Vector2(-4, 11)
+shape = SubResource("RectangleShape2D_cye7l")
+
+[node name="ClipboardSprite" type="Sprite2D" parent="Clipboard/ClipboardArea"]
+texture = ExtResource("3_vmlpf")
+
+[node name="Form" type="PanelContainer" parent="Clipboard/ClipboardArea"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -89.0
+offset_top = -104.0
+offset_right = 81.0
+offset_bottom = 136.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("7_d08i5")
+theme_override_styles/panel = SubResource("StyleBoxFlat_a8sod")
+
+[node name="Column" type="VBoxContainer" parent="Clipboard/ClipboardArea/Form"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="RowName" type="HBoxContainer" parent="Clipboard/ClipboardArea/Form/Column"]
+layout_mode = 2
+
+[node name="LblName" type="Label" parent="Clipboard/ClipboardArea/Form/Column/RowName"]
+layout_mode = 2
+text = "Name: "
+
+[node name="InputName" type="LineEdit" parent="Clipboard/ClipboardArea/Form/Column/RowName"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RowAge" type="HBoxContainer" parent="Clipboard/ClipboardArea/Form/Column"]
+layout_mode = 2
+
+[node name="LblAge" type="Label" parent="Clipboard/ClipboardArea/Form/Column/RowAge"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0666667, 0.0745098, 1)
+text = "Age: "
+
+[node name="OptionAge" type="OptionButton" parent="Clipboard/ClipboardArea/Form/Column/RowAge"]
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 3
+popup/item_0/text = "Kitten"
+popup/item_0/id = 0
+popup/item_1/text = "Adult"
+popup/item_1/id = 1
+popup/item_2/text = "Senior"
+popup/item_2/id = 2
+
+[node name="RowBreed" type="HBoxContainer" parent="Clipboard/ClipboardArea/Form/Column"]
+layout_mode = 2
+
+[node name="LblBreed" type="Label" parent="Clipboard/ClipboardArea/Form/Column/RowBreed"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0666667, 0.0745098, 1)
+text = "Breed: "
+
+[node name="OptionBreed" type="OptionButton" parent="Clipboard/ClipboardArea/Form/Column/RowBreed"]
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 1
+popup/item_0/text = "Cat"
+popup/item_0/id = 0
+
+[node name="RowColour" type="HBoxContainer" parent="Clipboard/ClipboardArea/Form/Column"]
+layout_mode = 2
+
+[node name="LblColour" type="Label" parent="Clipboard/ClipboardArea/Form/Column/RowColour"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0666667, 0.0745098, 1)
+text = "Colour: "
+
+[node name="OptionColour" type="OptionButton" parent="Clipboard/ClipboardArea/Form/Column/RowColour"]
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 8
+popup/item_0/text = "Black"
+popup/item_0/id = 0
+popup/item_1/text = "White"
+popup/item_1/id = 1
+popup/item_2/text = "Grey"
+popup/item_2/id = 2
+popup/item_3/text = "White"
+popup/item_3/id = 3
+popup/item_4/text = "Tortie"
+popup/item_4/id = 4
+popup/item_5/text = "Tuxedo"
+popup/item_5/id = 5
+popup/item_6/text = "Ginger"
+popup/item_6/id = 6
+popup/item_7/text = "Tabby"
+popup/item_7/id = 7
+
+[node name="RowTraits" type="HBoxContainer" parent="Clipboard/ClipboardArea/Form/Column"]
+layout_mode = 2
+
+[node name="LblTraits" type="Label" parent="Clipboard/ClipboardArea/Form/Column/RowTraits"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.0666667, 0.0745098, 1)
+text = "Traits: "
+
+[node name="DDTraits" parent="Clipboard/ClipboardArea/Form/Column/RowTraits" instance=ExtResource("10_a8sod")]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+options = Array[String](["Lazy", "Friendly", "Shy", "Greedy"])
+
+[node name="OptionTraits" type="OptionButton" parent="Clipboard/ClipboardArea/Form/Column/RowTraits"]
+layout_mode = 2
+item_count = 4
+popup/item_0/text = "Lazy"
+popup/item_0/id = 0
+popup/item_1/text = "Friendly"
+popup/item_1/id = 1
+popup/item_2/text = "Greedy"
+popup/item_2/id = 2
+popup/item_3/text = "Shy"
+popup/item_3/id = 3
+
+[node name="FormBtns" type="HBoxContainer" parent="Clipboard/ClipboardArea/Form/Column"]
+layout_mode = 2
+alignment = 1
+
+[node name="BtnConfirm" type="Button" parent="Clipboard/ClipboardArea/Form/Column/FormBtns"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Save"
+
+[node name="BtnCancel" type="Button" parent="Clipboard/ClipboardArea/Form/Column/FormBtns"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Cancel"
+
+[connection signal="pressed" from="Clipboard/ClipboardArea/Form/Column/FormBtns/BtnConfirm" to="." method="_on_btn_confirm_pressed"]
+[connection signal="pressed" from="Clipboard/ClipboardArea/Form/Column/FormBtns/BtnCancel" to="." method="_on_btn_cancel_pressed"]

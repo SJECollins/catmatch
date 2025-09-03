@@ -1,0 +1,81 @@
+[gd_scene load_steps=3 format=3 uid="uid://3dhrns6iiswi"]
+
+[ext_resource type="Script" uid="uid://b8maai4bhy10e" path="res://scripts/ui/main_menu.gd" id="1_s6uko"]
+[ext_resource type="Theme" uid="uid://ddsd45u7nlgh" path="res://assets/theme/main_theme.tres" id="2_vww0c"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_s6uko")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RowTitle" type="HBoxContainer" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 240)
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer/RowTitle"]
+layout_mode = 2
+alignment = 1
+
+[node name="LblTitle" type="Label" parent="Panel/VBoxContainer/RowTitle/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Cat Match"
+horizontal_alignment = 1
+
+[node name="LblTag" type="Label" parent="Panel/VBoxContainer/RowTitle/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_vww0c")
+text = "Catch a Cat from our Cat Stash at Cat Match"
+
+[node name="RowMenu" type="HBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="ListMenu" type="VBoxContainer" parent="Panel/VBoxContainer/RowMenu"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="LblMenu" type="Label" parent="Panel/VBoxContainer/RowMenu/ListMenu"]
+layout_mode = 2
+text = "Main Menu"
+horizontal_alignment = 1
+
+[node name="BtnNew" type="Button" parent="Panel/VBoxContainer/RowMenu/ListMenu"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "New Game"
+
+[node name="BtnQuit" type="Button" parent="Panel/VBoxContainer/RowMenu/ListMenu"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Quit"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer/RowMenu"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[connection signal="pressed" from="Panel/VBoxContainer/RowMenu/ListMenu/BtnNew" to="." method="_on_btn_new_pressed"]

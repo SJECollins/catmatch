@@ -1,0 +1,148 @@
+[gd_scene load_steps=7 format=3 uid="uid://col7774im21hg"]
+
+[ext_resource type="Script" uid="uid://cvssmw3e2y0cl" path="res://scripts/ui/computer.gd" id="1_r5hh8"]
+[ext_resource type="Theme" uid="uid://bbw3oybkg7aut" path="res://assets/theme/form_theme.tres" id="1_rsi1w"]
+[ext_resource type="Texture2D" uid="uid://duox8rt4nhars" path="res://assets/blankcomputerscreen.png" id="2_rsi1w"]
+[ext_resource type="Texture2D" uid="uid://6g6knwqbbqaj" path="res://assets/leftarrow.png" id="3_hd1xa"]
+[ext_resource type="Texture2D" uid="uid://cuyfnhjk0uhjq" path="res://assets/button.png" id="4_lsdin"]
+[ext_resource type="Texture2D" uid="uid://vprcfujt3s8b" path="res://assets/rightarrow.png" id="5_8aqy1"]
+
+[node name="Computer" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_rsi1w")
+script = ExtResource("1_r5hh8")
+
+[node name="Screen" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_rsi1w")
+
+[node name="LblNoCats" type="Label" parent="Screen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.5
+offset_top = -11.5
+offset_right = 64.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "No Cats To View!"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Screen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScreenContainer" type="VBoxContainer" parent="Screen/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="RowName" type="HBoxContainer" parent="Screen/ScrollContainer/ScreenContainer"]
+layout_mode = 2
+
+[node name="LblName" type="Label" parent="Screen/ScrollContainer/ScreenContainer/RowName"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+autowrap_mode = 2
+
+[node name="RowAgeBreed" type="HBoxContainer" parent="Screen/ScrollContainer/ScreenContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="LblAge" type="Label" parent="Screen/ScrollContainer/ScreenContainer/RowAgeBreed"]
+custom_minimum_size = Vector2(90, 23)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+autowrap_mode = 2
+
+[node name="LblBreed" type="Label" parent="Screen/ScrollContainer/ScreenContainer/RowAgeBreed"]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+autowrap_mode = 2
+
+[node name="RowColour" type="HBoxContainer" parent="Screen/ScrollContainer/ScreenContainer"]
+layout_mode = 2
+
+[node name="LblColour" type="Label" parent="Screen/ScrollContainer/ScreenContainer/RowColour"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+autowrap_mode = 2
+
+[node name="RowTraits" type="HBoxContainer" parent="Screen/ScrollContainer/ScreenContainer"]
+layout_mode = 2
+
+[node name="LblTraits" type="Label" parent="Screen/ScrollContainer/ScreenContainer/RowTraits"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+autowrap_mode = 2
+
+[node name="RowButtons" type="HBoxContainer" parent="Screen"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -58.0
+offset_top = -23.0
+offset_right = 174.0
+offset_bottom = 17.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+theme_override_constants/separation = 40
+
+[node name="BtnLeft" type="Button" parent="Screen/RowButtons"]
+layout_mode = 2
+icon = ExtResource("3_hd1xa")
+
+[node name="BtnSelectCat" type="Button" parent="Screen/RowButtons"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "ADOPT	"
+icon = ExtResource("4_lsdin")
+icon_alignment = 1
+
+[node name="BtnRight" type="Button" parent="Screen/RowButtons"]
+layout_mode = 2
+icon = ExtResource("5_8aqy1")
+
+[node name="BtnView" type="Button" parent="Screen"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 63.0
+offset_bottom = 17.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+text = "View"
+icon = ExtResource("4_lsdin")
+icon_alignment = 1
+
+[connection signal="pressed" from="Screen/RowButtons/BtnLeft" to="." method="_on_btn_left_pressed"]
+[connection signal="pressed" from="Screen/RowButtons/BtnSelectCat" to="." method="_on_btn_select_cat_pressed"]
+[connection signal="pressed" from="Screen/RowButtons/BtnRight" to="." method="_on_btn_right_pressed"]
+[connection signal="pressed" from="Screen/BtnView" to="." method="_on_btn_view_pressed"]

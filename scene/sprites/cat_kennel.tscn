@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://d4g5wcj8btlv2"]
+
+[ext_resource type="Script" uid="uid://4ndq5ublkpq8" path="res://scripts/sprites/cat_kennel.gd" id="1_bqe2b"]
+[ext_resource type="Texture2D" uid="uid://cfix48comqu5i" path="res://assets/grounds/kennelbg.png" id="2_apqfl"]
+[ext_resource type="Texture2D" uid="uid://dfodu0v746lqs" path="res://assets/grounds/kennel.png" id="3_myapc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fnp8b"]
+size = Vector2(126, 125)
+
+[node name="CatKennel" type="Area2D"]
+scale = Vector2(2, 2)
+script = ExtResource("1_bqe2b")
+
+[node name="Background" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_apqfl")
+
+[node name="CatSprite" type="Sprite2D" parent="."]
+
+[node name="CatAnimation" type="AnimationPlayer" parent="CatSprite"]
+
+[node name="KennelFront" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_myapc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(63, 63.5)
+shape = SubResource("RectangleShape2D_fnp8b")
